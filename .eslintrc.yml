@@ -1,0 +1,19 @@
+root: true
+parser: '@typescript-eslint/parser'
+plugins:
+  - '@typescript-eslint'
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+rules:
+  quotes: 0
+  '@typescript-eslint/quotes':
+    - error
+    - single
+  semi: 0
+  '@typescript-eslint/semi':
+    - error
+  '@typescript-eslint/no-non-null-assertion': 0
+  '@typescript-eslint/explicit-member-accessibility': 2
+env:
+  node: true

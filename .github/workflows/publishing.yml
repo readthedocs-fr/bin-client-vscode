@@ -1,0 +1,55 @@
+name: Publishing
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Package
+        run: npm run package
+
+      - name: Release
+        uses: actions/create-release@v1
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./bin.vsix
+          asset_name: bin-${{ github.ref }}.vsix
+          asset_content_type: application/vsix
+
+      - name: Publish in Visual Studio Marketplace
+        continue-on-error: true
+        run: npm run deploy-vsce -- --packagePath bin.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      # - name: Publish in Open VSX
+      #   continue-on-error: true
+      #   run: npm run deploy-ovsx -- bin.vsix -p ${{ secrets.OVSX_PAT }}

@@ -1,0 +1,9 @@
+**/*.map
+.gitignore
+.prettierrc
+.yarnrc
+.eslintrc.yml
+.vscode
+.github
+src
+tsconfig.json
