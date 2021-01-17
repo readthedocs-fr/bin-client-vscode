@@ -3,7 +3,7 @@ import { createBin } from './helpers/bin';
 import { input } from './helpers/input';
 
 export function activate(): void {
-  vscode.commands.registerCommand('bin.createBin', async () => {
+  vscode.commands.registerCommand('rtdbin.createBin', async () => {
     const window = vscode.window;
     const editor = window.activeTextEditor;
 
@@ -24,7 +24,7 @@ export function activate(): void {
       return;
     }
 
-    const configuration = vscode.workspace.getConfiguration('bin');
+    const configuration = vscode.workspace.getConfiguration('rtdbin');
 
     const lifetime = await input({
       prompt: 'The lifetime of your bin (0 for never, else in this format: 1d1h1m1s)',

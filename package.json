@@ -1,9 +1,9 @@
 {
-  "name": "bin",
+  "name": "rtdbin",
   "displayName": "Read The Bin",
   "publisher": "readthedocs",
   "icon": "resources/icon.png",
-  "description": "An extension to easily create bins with https://bin.readthedocs.fr.",
+  "description": "An extension to easily create bins.",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -20,25 +20,26 @@
   },
   "keywords": [
     "bin",
+    "rtdbin",
     "pastebin"
   ],
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:bin.createBin"
+    "onCommand:rtdbin.createBin"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "bin.createBin",
+        "command": "rtdbin.createBin",
         "title": "Create a bin",
         "category": "Bin"
       }
     ],
     "keybindings": [
       {
-        "command": "bin.createBin",
+        "command": "rtdbin.createBin",
         "key": "ctrl+; h",
         "when": "editorTextFocus && !readonlyEditor"
       }
@@ -46,7 +47,7 @@
     "menus": {
       "editor/context": [
         {
-          "command": "bin.createBin",
+          "command": "rtdbin.createBin",
           "group": "9_cutcopypaste",
           "when": "editorTextFocus && !readonlyEditor"
         }
@@ -55,13 +56,13 @@
     "configuration": {
       "title": "Read The Docs",
       "properties": {
-        "bin.defaultExpiration": {
+        "rtdbin.defaultExpiration": {
           "type": "string",
           "default": "0",
           "pattern": "^[0-9dhms]+$",
           "markdownDescription": "The default expiration of your futures bins (0 for never, else in this format: 1d1h1m1s)"
         },
-        "bin.defaultMaxUsages": {
+        "rtdbin.defaultMaxUsages": {
           "type": "integer",
           "default": "0",
           "markdownDescription": "The default max usages of your futures bins (0 for infinity)"
