@@ -44,12 +44,12 @@ jobs:
           asset_name: bin-${{ github.ref }}.vsix
           asset_content_type: application/vsix
 
-      - name: Publish in Visual Studio Marketplace
+      - name: Publish on Visual Studio Marketplace
         continue-on-error: true
         run: npm run deploy-vsce -- --packagePath bin.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
-      # - name: Publish in Open VSX
+      # - name: Publish on Open VSX
       #   continue-on-error: true
       #   run: npm run deploy-ovsx -- bin.vsix -p ${{ secrets.OVSX_PAT }}
