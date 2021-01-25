@@ -16,7 +16,7 @@
   "license": "MIT",
   "main": "out/extension.js",
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.43.0"
   },
   "keywords": [
     "bin",
