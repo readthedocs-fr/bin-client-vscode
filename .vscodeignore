@@ -1,9 +1,10 @@
-**/*.map
-.gitignore
-.prettierrc
-.yarnrc
-.eslintrc.yml
+src
+images
 .vscode
 .github
-src
+
+.eslint*
+.prettierignore
+.gitignore
 tsconfig.json
+yarn.lock

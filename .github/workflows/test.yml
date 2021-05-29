@@ -1,0 +1,57 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+    paths: [yarn.lock, '*.json', .eslint*, .prettierignore, .github/workflows/test.yml, src/**]
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths: [yarn.lock, '*.json', .eslint*, .prettierignore, .github/workflows/test.yml, src/**]
+
+jobs:
+  pre-test:
+    name: Pretest and lint
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.14.1
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build --noEmit
+
+      - name: Lint
+        run: yarn lint
+
+  test:
+    name: Test
+    needs: pre-test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [13, 14, 15, 16]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-engines
+
+      - name: Build
+        run: yarn build --noEmit
