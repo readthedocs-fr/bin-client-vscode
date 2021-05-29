@@ -1,11 +1,10 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "ES2019",
-    "lib": ["ES2019"],
-    "outDir": "out",
-    "rootDir": "src",
-    "strict": true
-  },
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "ES2019",
+		"lib": ["ES2019", "ES2020.bigint", "ES2020.string", "ES2020.symbol.wellknown"],
+		"outDir": "build",
+		"strict": true
+	},
+	"include": ["src/**/*"]
 }
