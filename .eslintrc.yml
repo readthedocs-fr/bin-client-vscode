@@ -1,19 +1,13 @@
 root: true
-parser: '@typescript-eslint/parser'
-plugins:
-  - '@typescript-eslint'
-extends:
-  - 'eslint:recommended'
-  - 'plugin:@typescript-eslint/recommended'
+extends: ['@typescord', prettier]
+plugins: [prettier]
+parserOptions:
+  project: tsconfig.json
 rules:
-  quotes: 0
-  '@typescript-eslint/quotes':
-    - error
-    - single
-  semi: 0
-  '@typescript-eslint/semi':
-    - error
-  '@typescript-eslint/no-non-null-assertion': 0
-  '@typescript-eslint/explicit-member-accessibility': 2
+  prettier/prettier: error
+  import/no-unresolved: off
+  unicorn/prefer-node-protocol: off
 env:
   node: true
+  es2020: true
+  jest: true
