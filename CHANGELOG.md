@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.2.0...v0.2.1) (2021-06-02)
+
+
+### Bug Fixes
+
+* wrong form-data field name (`extension`) ([44295b8](https://www.github.com/readthedocs-fr/bin-client-vscode/commit/44295b8e35ab88510da1713362d5f28b4bcfefcd))
+
 ## [0.2.0](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.1.0...v0.2.0) (2021-05-29)
 
 
