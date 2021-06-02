@@ -3,12 +3,15 @@ import { window, commands, workspace, env, Uri, ExtensionContext } from 'vscode'
 import { createBin } from './helpers/bin';
 import { input } from './helpers/input';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {};
+
 export function activate(context: ExtensionContext): void {
 	// eslint-disable-next-line sonarjs/cognitive-complexity
-	const disposable = commands.registerCommand('rtdbin.createBin', async (_, filePath?: Uri[]) => {
-		const editor =
-			// eslint-disable-next-line @typescript-eslint/no-empty-function
-			filePath ? await window.showTextDocument(filePath[0]).then(undefined, () => {}) : window.activeTextEditor;
+	const disposable = commands.registerCommand('rtdbin.createBin', async (_, selectedFiles?: Uri[]) => {
+		const editor = selectedFiles
+			? await window.showTextDocument(selectedFiles[0]).then(undefined, noop)
+			: window.activeTextEditor;
 
 		if (!editor) {
 			window.showErrorMessage('There is no active text editor.');
@@ -66,7 +69,7 @@ export function activate(context: ExtensionContext): void {
 			const binUrl = await createBin({
 				code,
 				filename: basename(editor.document.fileName),
-				extension: language,
+				language,
 				maxUses: parseInt(maxUses),
 				lifetime: parseInt(lifetime),
 			});

@@ -16,18 +16,19 @@ export const errors: Record<number, string> = {
 interface BinOptions {
 	code: string;
 	filename: string;
-	extension?: string;
+	language?: string;
 	type?: string;
 	lifetime?: number;
 	maxUses?: number;
 }
 
-export async function createBin({ code, filename, extension, lifetime = 0, maxUses = 0 }: BinOptions): Promise<string> {
+export async function createBin({ code, filename, language, lifetime = 0, maxUses = 0 }: BinOptions): Promise<string> {
 	const fd = new FormData();
 
-	if (extension) {
-		fd.append('extension', extension);
+	if (language) {
+		fd.append('lang', language);
 	}
+
 	fd.append('lifetime', lifetime.toString());
 	fd.append('maxusage', maxUses.toString());
 	fd.append('code', code, {
