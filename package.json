@@ -1,127 +1,127 @@
 {
-	"name": "rtdbin",
-	"displayName": "Read The Bin",
-	"publisher": "readthedocs",
-	"description": "An extension to easily create bins.",
-	"version": "0.2.0",
-	"icon": "media/icon.png",
-	"main": "build/extension.js",
-	"prettier": "@typescord/prettier-config",
-	"scripts": {
-		"vscode:prepublish": "yarn build",
-		"deploy-vsce": "vsce publish",
-		"deploy-ovsx": "ovsx publish",
-		"package": "vsce package --yarn -o bin.vsix",
-		"build": "tsc",
-		"watch": "tsc -w",
-		"lint": "eslint src --ext ts",
-		"lint-fix": "yarn lint --fix",
-		"format": "prettier . --write"
-	},
-	"author": "Read The Docs FR",
-	"engines": {
-		"vscode": "^1.52.0"
-	},
-	"license": "MIT",
-	"homepage": "https://github.com/readthedocs-fr/bin-client-discord#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/readthedocs-fr/bin-client-discord.git"
-	},
-	"bugs": {
-		"url": "https://github.com/readthedocs-fr/bin-client-discord/issues"
-	},
-	"activationEvents": [
-		"onCommand:rtdbin.createBin"
-	],
-	"contributes": {
-		"commands": [
-			{
-				"command": "rtdbin.createBin",
-				"title": "Create a bin",
-				"category": "Bin",
-				"enablement": "activeEditor || activePanel == 'workbench.panel.output' || explorerViewletVisible && !explorerResourceIsFolder"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "rtdbin.createBin",
-				"key": "ctrl+; h",
-				"when": "activeEditor || activePanel == 'workbench.panel.output'"
-			}
-		],
-		"menus": {
-			"commandPalette": [
-				{
-					"command": "rtdbin.createBin",
-					"title": "Create a bin",
-					"category": "Bin",
-					"when": "activeEditor || activePanel == 'workbench.panel.output'"
-				}
-			],
-			"explorer/context": [
-				{
-					"command": "rtdbin.createBin",
-					"group": "5_cutcopypaste",
-					"when": "!explorerResourceIsFolder"
-				}
-			],
-			"editor/context": [
-				{
-					"command": "rtdbin.createBin",
-					"group": "9_cutcopypaste",
-					"when": "editorTextFocus"
-				}
-			]
-		},
-		"configuration": {
-			"title": "Read The Bin",
-			"properties": {
-				"rtdbin.defaultLifetime": {
-					"type": "string",
-					"default": "0",
-					"pattern": "^[\\ddhms]+$",
-					"markdownDescription": "The default lifetime of your futures bins (0 for never, else in this format: 1d1h1m1s)"
-				},
-				"rtdbin.defaultMaxUses": {
-					"type": "integer",
-					"default": "0",
-					"description": "The default max uses of your futures bins (0 for infinity)"
-				}
-			}
-		}
-	},
-	"categories": [
-		"Other"
-	],
-	"dependencies": {
-		"@typescord/famfor": "^0.1.2",
-		"got": "^11.8.2"
-	},
-	"devDependencies": {
-		"@types/node": "^15.0.2",
-		"@types/vscode": "^1.52.0",
-		"@typescord/eslint-config": "^0.2.1",
-		"@typescord/prettier-config": "^0.1.2",
-		"@typescript-eslint/eslint-plugin": "^4.22.1",
-		"@typescript-eslint/parser": "^4.22.1",
-		"eslint": "^7.26.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-import-resolver-node": "^0.3.4",
-		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-prettier": "^3.4.0",
-		"eslint-plugin-simple-import-sort": "^7.0.0",
-		"eslint-plugin-sonarjs": "^0.7.0",
-		"eslint-plugin-unicorn": "^32.0.1",
-		"ovsx": "0.1.0",
-		"prettier": "^2.3.0",
-		"rimraf": "^3.0.2",
-		"typescript": "~4.2.4",
-		"vsce": "^1.84.0"
-	},
-	"keywords": [
-		"bin",
-		"rtdbin",
-		"pastebin"
-	]
+  "name": "rtdbin",
+  "displayName": "Read The Bin",
+  "publisher": "readthedocs",
+  "description": "An extension to easily create bins.",
+  "version": "0.2.1",
+  "icon": "media/icon.png",
+  "main": "build/extension.js",
+  "prettier": "@typescord/prettier-config",
+  "scripts": {
+    "vscode:prepublish": "yarn build",
+    "deploy-vsce": "vsce publish",
+    "deploy-ovsx": "ovsx publish",
+    "package": "vsce package --yarn -o bin.vsix",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint src --ext ts",
+    "lint-fix": "yarn lint --fix",
+    "format": "prettier . --write"
+  },
+  "author": "Read The Docs FR",
+  "engines": {
+    "vscode": "^1.52.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/readthedocs-fr/bin-client-discord#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readthedocs-fr/bin-client-discord.git"
+  },
+  "bugs": {
+    "url": "https://github.com/readthedocs-fr/bin-client-discord/issues"
+  },
+  "activationEvents": [
+    "onCommand:rtdbin.createBin"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "rtdbin.createBin",
+        "title": "Create a bin",
+        "category": "Bin",
+        "enablement": "activeEditor || activePanel == 'workbench.panel.output' || explorerViewletVisible && !explorerResourceIsFolder"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "rtdbin.createBin",
+        "key": "ctrl+; h",
+        "when": "activeEditor || activePanel == 'workbench.panel.output'"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "rtdbin.createBin",
+          "title": "Create a bin",
+          "category": "Bin",
+          "when": "activeEditor || activePanel == 'workbench.panel.output'"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "rtdbin.createBin",
+          "group": "5_cutcopypaste",
+          "when": "!explorerResourceIsFolder"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "rtdbin.createBin",
+          "group": "9_cutcopypaste",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Read The Bin",
+      "properties": {
+        "rtdbin.defaultLifetime": {
+          "type": "string",
+          "default": "0",
+          "pattern": "^[\\ddhms]+$",
+          "markdownDescription": "The default lifetime of your futures bins (0 for never, else in this format: 1d1h1m1s)"
+        },
+        "rtdbin.defaultMaxUses": {
+          "type": "integer",
+          "default": "0",
+          "description": "The default max uses of your futures bins (0 for infinity)"
+        }
+      }
+    }
+  },
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "@typescord/famfor": "^0.1.2",
+    "got": "^11.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "@types/vscode": "^1.52.0",
+    "@typescord/eslint-config": "^0.2.1",
+    "@typescord/prettier-config": "^0.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.7.0",
+    "eslint-plugin-unicorn": "^32.0.1",
+    "ovsx": "0.1.0",
+    "prettier": "^2.3.0",
+    "rimraf": "^3.0.2",
+    "typescript": "~4.2.4",
+    "vsce": "^1.84.0"
+  },
+  "keywords": [
+    "bin",
+    "rtdbin",
+    "pastebin"
+  ]
 }
