@@ -31,3 +31,7 @@ yarn build --noEmit # check typescript types
 git commit -am "conventional commit"
 git push origin <branch_name>
 ```
+
+## Testing
+
+Open this project with Visual Studio Code, and click on `Run Extension` (or `F5`).

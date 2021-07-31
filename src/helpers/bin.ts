@@ -1,4 +1,4 @@
-import { FormData } from '@typescord/famfor';
+import FormData from 'form-data';
 import got, { HTTPError, TimeoutError } from 'got';
 
 export const errors: Record<number, string> = {
@@ -15,31 +15,25 @@ export const errors: Record<number, string> = {
 
 interface BinOptions {
 	code: string;
-	filename: string;
+	fileName: string;
 	language?: string;
-	type?: string;
-	lifetime?: number;
+	lifeTime?: number;
 	maxUses?: number;
 }
 
-export async function createBin({ code, filename, language, lifetime = 0, maxUses = 0 }: BinOptions): Promise<string> {
+export async function createBin({ code, fileName, lifeTime = 0, maxUses = 0 }: BinOptions): Promise<string> {
 	const fd = new FormData();
 
-	if (language) {
-		fd.append('lang', language);
-	}
-
-	fd.append('lifetime', lifetime.toString());
+	fd.append('lifetime', lifeTime.toString());
 	fd.append('maxusage', maxUses.toString());
-	fd.append('code', code, {
-		filename,
-		type: 'text/plain; charset=utf-8',
+	fd.append(fileName, code, {
+		filename: fileName,
+		contentType: 'text/plain; charset=utf-8',
 	});
 
 	return got
 		.post('https://bin.readthedocs.fr/new', {
-			headers: fd.headers,
-			body: fd.stream,
+			body: fd,
 			followRedirect: false,
 			timeout: 5000,
 			retry: {
@@ -49,7 +43,7 @@ export async function createBin({ code, filename, language, lifetime = 0, maxUse
 				errorCodes: ['ECONNRESET', 'EADDRINUSE', 'ECONNREFUSED', 'EPIPE', 'ENETUNREACH', 'EAI_AGAIN'],
 			},
 		})
-		.then(({ headers }) => headers.location!)
+		.then(({ headers }) => headers.location!) // the server always returns the Location header
 		.catch((error: Error) => {
 			if (error instanceof HTTPError || error instanceof TimeoutError) {
 				const errorCode = error instanceof HTTPError ? error.response.statusCode : undefined;

@@ -1,7 +1,6 @@
 import { basename } from 'path';
 import { window, commands, workspace, env, Uri, ExtensionContext } from 'vscode';
-import { createBin } from './helpers/bin';
-import { input } from './helpers/input';
+import { createBin, input } from './helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
@@ -21,23 +20,11 @@ export function activate(context: ExtensionContext): void {
 		const selection = editor.selection;
 		const code = editor.document.getText(selection.isEmpty ? undefined : selection);
 
-		if (!code) {
-			return;
-		}
-
-		const language = await input({
-			prompt: 'The language of your bin',
-			placeHolder: 'Language',
-			value: editor.document.languageId,
-		});
-
-		if (!language) {
-			return;
-		}
+		if (!code) return;
 
 		const configuration = workspace.getConfiguration('rtdbin');
 
-		const lifetime = await input({
+		const lifeTime = await input({
 			prompt: 'The lifetime of your bin (0 for never, else in this format: 1d1h1m1s)',
 			placeHolder: 'Lifetime',
 			value: configuration.get('defaultLifetime'),
@@ -45,10 +32,7 @@ export function activate(context: ExtensionContext): void {
 				return !/^[\ddhms]+$/.test(value) ? 'Please enter a valid duration (0 or 1d1h1m1s).' : undefined;
 			},
 		});
-
-		if (!lifetime) {
-			return;
-		}
+		if (!lifeTime) return;
 
 		const maxUses = await input({
 			prompt: 'The max uses of your bin (0 for infinity)',
@@ -60,18 +44,14 @@ export function activate(context: ExtensionContext): void {
 				return isNaN(maxUses) || maxUses < 0 ? 'Please enter a valid integer greater than or equal to 0.' : undefined;
 			},
 		});
-
-		if (!maxUses) {
-			return;
-		}
+		if (!maxUses) return;
 
 		try {
 			const binUrl = await createBin({
 				code,
-				filename: basename(editor.document.fileName),
-				language,
+				fileName: basename(editor.document.fileName),
 				maxUses: parseInt(maxUses),
-				lifetime: parseInt(lifetime),
+				lifeTime: parseInt(lifeTime),
 			});
 
 			const action = await window.showInformationMessage(`[${binUrl}](${binUrl})`, 'Open', 'Copy');
@@ -79,10 +59,11 @@ export function activate(context: ExtensionContext): void {
 			if (action === 'Open') {
 				env.openExternal(Uri.parse(binUrl));
 			} else {
+				// action === 'Copy'
 				env.clipboard.writeText(binUrl);
 			}
 		} catch (error) {
-			window.showErrorMessage(error);
+			window.showErrorMessage(error.toString());
 		}
 	});
 
