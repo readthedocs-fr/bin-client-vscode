@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.2](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.2.1...v0.2.2) (2021-07-31)
+
+
+### Code Refactoring
+
+* use form-data and update code ([2a7df50](https://www.github.com/readthedocs-fr/bin-client-vscode/commit/2a7df5053b4cf05c227c20565621939bfa53692e))
+
 ### [0.2.1](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.2.0...v0.2.1) (2021-06-02)
 
 
