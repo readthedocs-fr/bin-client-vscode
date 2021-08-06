@@ -4,6 +4,10 @@ An extension to easily create bins with https://bin.readthedocs.fr.
 
 ![Create a bin](https://raw.githubusercontent.com/readthedocs-fr/bin-client-vscode/main/images/create-a-bin.png)
 
+## Installation
+
+Victim of its success, this extension is unfortunately no longer published on the Visual Studio Marketplace (to avoid overloading the bin server). You can still install it via https://github.com/readthedocs-fr/bin-client-vscode/releases or https://open-vsx.org/extension/readthedocs/rtdbin.
+
 ## Contributing
 
 After forking, do these commands:

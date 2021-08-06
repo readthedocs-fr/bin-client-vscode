@@ -50,14 +50,6 @@ jobs:
           tag: ${{ needs.release-please.outputs.tag }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish on Visual Studio Marketplace
-        id: vsm
-        run: |
-          yarn deploy-vsce --packagePath bin.vsix
-          echo ::set-output name=runned::true
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
-
       - name: Publish on Open VSX
         if: steps.vsm.outputs.runned
         run: yarn deploy-ovsx bin.vsix -p ${{ secrets.OVSX_PAT }}
