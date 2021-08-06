@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.3](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.2.2...v0.2.3) (2021-08-06)
+
+
+### Miscellaneous Chores
+
+* update links and doc ([84fae87](https://www.github.com/readthedocs-fr/bin-client-vscode/commit/84fae87b1231fbbc1788c56f8f081b4c7589bef4))
+
 ### [0.2.2](https://www.github.com/readthedocs-fr/bin-client-vscode/compare/v0.2.1...v0.2.2) (2021-07-31)
 
 
